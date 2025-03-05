@@ -1,0 +1,5 @@
+*.wgt
+.sign/.author-signature.xml
+.sign/.manifest.tmp
+.sign/signature1.xml
+**/.sign

@@ -1,0 +1,36 @@
+<resources>
+    <application name="SquareGearConsumer" >
+        <serviceProfile
+            id="/system/SquareGear"
+            name="SquareGear"
+            role="consumer"
+            version="2.0"
+            serviceLimit="ANY"
+            serviceTimeout="25">
+            <supportedTransports>
+                <transport type="TRANSPORT_BT" />
+                <transport type="TRANSPORT_WIFI" />
+            </supportedTransports>
+           
+            <serviceChannel
+                id="97"
+                dataRate="low"
+                priority="high"
+                reliability= "enable">
+            </serviceChannel>
+            <serviceChannel
+                id="98"
+                dataRate="high"
+                priority="high"
+                reliability= "enable">
+            </serviceChannel>
+            <serviceChannel
+                id="99"
+                dataRate="high"
+                priority="high"
+                reliability= "enable">
+            </serviceChannel>
+        </serviceProfile>
+    </application>
+
+</resources>

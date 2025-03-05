@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="tizen-studio">
+    <CLASSES>
+      <root url="file://$USER_HOME$/tizen-studio" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/tizen-studio/TizenStudio.app/Contents/Eclipse/plugins/org.tizen.ide.documentation.linker/src" />
+      <root url="file://$USER_HOME$/tizen-studio/tools/jsa/jalangi/lifetime-analysis/src/main/java" />
+      <root url="file://$USER_HOME$/tizen-studio/tools/jsa/jalangi/lifetime-analysis/src/test/java" />
+      <root url="file://$USER_HOME$/tizen-studio/tools/jsa/jalangi/node_modules/jalangi/src/java" />
+    </SOURCES>
+  </library>
+</component>

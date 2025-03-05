@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://sites.google.com/site/squaregear/SquareGearConsumer" version="3.0.0" viewmodes="maximized">
+    <access origin="*" subdomains="true"></access>
+    <tizen:application id="mDnj2LjkID.SquareGearConsumer" package="mDnj2LjkID" required_version="2.2"/>
+    <author href="https://sites.google.com/view/gearsoftware/applications/squaregear" email="rumataestorish@yandex.ru">Rumata</author>
+    <content src="index.html"/>
+    <description>Unofficial Foursquare client</description>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon_launcher.png"/>
+    <tizen:metadata key="AccessoryServicesLocation" value="res/xml/accessoryservices.xml"/>
+    <tizen:metadata key="master_app_name" value="GearHub"/>
+    <tizen:metadata key="master_app_packagename" value="petbotproject.gearhub"/>
+    <tizen:metadata key="master_app_min_version" value="1"/>
+    <tizen:metadata key="master_app_playstore_deeplink" value="https://play.google.com/store/apps/details?id=petbotproject.gearhub"/>
+    <tizen:metadata key="master_app_auto_uninstallation" value="false"/>
+    <name>SquareGear</name>
+    <tizen:privilege name="http://tizen.org/privilege/location"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/accessoryprotocol"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/call"/>
+    <tizen:profile name="wearable"/>
+    <tizen:setting background-support="enable" encryption="disable" hwkey-event="enable"/>
+</widget>

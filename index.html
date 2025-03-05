@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <title>SquareGear</title>
+
+    <link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css"/>
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="lib/tau/wearable/theme/default/tau.circle.min.css">
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="css/style.circle.css">
+
+    <link rel="stylesheet" href="css/multiplebutton.css"/>
+
+    <script type="text/javascript" src="js/weblib/circle-helper.js"></script>
+
+    <script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
+    <script type="text/javascript" src="js/weblib/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/weblib/log-1.0.1.1.js"></script>
+    <script type="text/javascript" src="js/weblib/toastMessage-1.1.1.js"></script>
+    <script type="text/javascript" src="js/weblib/sap-2.0.3.4.js"></script>
+    <script type="text/javascript" src="js/weblib/utils-2.1.8.js"></script>
+    <script type="text/javascript" src="js/weblib/actionMenu-2.2.0.js"></script>
+    <script type="text/javascript" src="js/weblib/list-1.0.1.js"></script>
+
+    <script type="text/javascript" src="js/weblib/GearHttp/androidHttpRequest.js"></script>
+    <script type="text/javascript" src="js/weblib/GearHttp/androidRequestData.js"></script>
+    <script type="text/javascript" src="js/weblib/GearHttp/requestHeader.js"></script>
+    <script type="text/javascript" src="js/weblib/GearHttp/gearHttp-1.3.0.0.js"></script>
+    <script type="text/javascript" src="js/foursquare/venueDetails.js"></script>
+    <script type="text/javascript" src="js/foursquare/foursquare.js"></script>
+    <script type="text/javascript" src="js/foursquare/foursquare.data.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript" src="locales/en-us/language.js"></script>
+    <script type="text/javascript" src="language.js"></script>
+</head>
+
+<body>
+
+<div class="ui-page" id="smallProcessingPage">
+    <div class="ui-content content-padding">
+        <div class="small-processing-container">
+            <div class="ui-processing" style="visibility: hidden;"></div>
+            <div class="ui-processing-text" id="smallProcessingText"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        (function () {
+            var page = document.getElementById("smallProcessingPage");
+            page.addEventListener("pageshow", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "";
+            }, false);
+
+            page.addEventListener("pagebeforehide", function (event) {
+                var page = event.target, processing = page.querySelector(".ui-processing");
+                processing.style.visibility = "hidden";
+            }, false);
+        }());
+    </script>
+</div>
+
+<div class="ui-page" id="processingPage">
+    <div id="processingPageText" class="ui-processing ui-processing-full-size"></div>
+</div>
+
+
+<!-- Venues list -->
+<div id="main" class="ui-page">
+    <header class="ui-header">
+        <h2 class="ui-title"></h2>
+    </header>
+    <div class="ui-content" id="venuesList">
+
+        <ul class="ui-listview" id="venuesListBox">
+        </ul>
+    </div>
+</div>
+
+<!-- Friends list -->
+<div id="friendsPage" class="ui-page">
+    <header class="ui-header">
+        <h2 class="ui-title"></h2>
+        <!-- <button class="ui-more ui-icon-tick" style="z-index: 1000" onclick="closefriends()"></button> -->
+    </header>
+    <div class="ui-content" id="friendsList">
+        <ul class="ui-listview" id="friendsListBox">
+        </ul>
+    </div>
+    <footer class="ui-footer ui-bottom-button ui-fixed">
+        <button class="ui-btn" onclick="closeFriends()" id="selectFriends">OK</button>
+    </footer>
+</div>
+
+<div id="tipsPage" class="ui-page">
+    <header class="ui-header">
+        <h2 class="ui-title"></h2>
+    </header>
+    <div class="ui-content">
+        <ul class="ui-listview"></ul>
+    </div>
+</div>
+
+<div id="urlPage" class="ui-page">
+    <iFrame style="height: 100%; width: 100%"></iFrame>
+</div>
+
+<!--  Venues details page -->
+<div id="venueDetails" class="ui-page">
+    <header class="ui-header ui-has-more">
+        <h2 class="ui-title"></h2>
+    </header>
+
+    <button id="venueDetailsMenuButton" type="button"
+            style="z-index: 1000" class="ui-more"></button>
+
+    <div class="ui-content">
+        <ul class="ui-listview">
+            <li class="li-has-thumb-left">
+                <a id="venueName">
+                    <img alt="" src="" id="venuePreview" class="ui-li-thumb-left"/>
+                </a>
+            </li>
+
+            <li class="li-has-multiline" id="venueAddress">
+                <a href="#" id="addressLabel">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueRating">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+
+            <li class="li-has-multiline" id="venueUrl" onclick="openMenuLink()">
+                <a href="#urlPopup">
+                    <span class="li-text-sub ui-li-sub-text hyperlink"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueTwitter">
+                <a href="#" id="twitterLabel">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venuePhone" onclick="callVenue()">
+                <a href="#" id="phoneLabel">
+                    <span class="li-text-sub ui-li-sub-text hyperlink"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueDescription">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text hyperlink"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venuePeopleHere">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueBeenHere">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueTotalCheckins">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueUserCheckins">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+            <li class="li-has-multiline" id="venueTipsCount" onclick="requestTipsClick()">
+                <a href="#">
+                    <span class="li-text-sub ui-li-sub-text"></span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+
+</div>
+
+
+<!--  Checkin result page -->
+<div id="checkinResultPage" class="ui-page">
+    <header class="ui-header">
+        <h2 id="checkinResultPageHeader" class="ui-title">Checkin result</h2>
+    </header>
+    <div class="ui-content">
+        <ul class="ui-listview" id="checkinResultList">
+        </ul>
+    </div>
+    <footer class="ui-footer ui-bottom-button ui-fixed">
+        <button id="2btnPopup-ok" class="ui-btn" onclick="exitapp()">Exit</button>
+    </footer>
+
+</div>
+
+</body>
+</html>
