@@ -23,3 +23,5 @@ Features:
 * Stand-alone for compatible watch (with GPS)
 
 P.S. Powered by FourSquare
+
+[Phone part can be found here](https://github.com/RumataEstorish/GearHub)
