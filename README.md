@@ -5,9 +5,9 @@
 <img alt="" src="screenshots/1.png" width="200"/>
 <img alt="" src="screenshots/2.png" width="200"/>
 <img alt="" src="screenshots/3.png" width="200"/>
-<img alt="" src="screenshots/4.png" width="200"/>
-<img alt="" src="screenshots/5.png" width="200"/>
-<img alt="" src="screenshots/6.png" width="200"/>
+<img alt="" src="screenshots/44.png" width="200"/>
+<img alt="" src="screenshots/45.png" width="200"/>
+<img alt="" src="screenshots/46.png" width="200"/>
 </div>
 
 Features:
